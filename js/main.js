@@ -1,3 +1,14 @@
+/*********************************************************************************
+*  BTI425 – Assignment 2
+*  I declare that this assignment is my own work in accordance with Seneca Academic Policy.  
+*  No part of this assignment has been copied manually or electronically from any other source
+*  (including web sites) or distributed to other students.
+* 
+*  Name: Nolan Smith Student ID: 101664217 Date: 22/02/03
+*
+********************************************************************************/ 
+
+
 var page = 1
 var perPage = 10
 
@@ -82,7 +93,9 @@ const loadMovieData = (title = null) => {
 
 document.addEventListener('DOMContentLoaded', function () {
     loadMovieData();
-    // populatePostsTable(4); // test with User ID 4 (to be removed after testing)
+    document.querySelector("#searchForm").addEventListener("submit", (event)  => {
+        loadMovieData(document.querySelector('#title').value)
+    })
     document.querySelector("#prevPage").addEventListener("click", (event)  => {
         if(page != 1) {
             page --;
@@ -93,11 +106,10 @@ document.addEventListener('DOMContentLoaded', function () {
         page ++;
         loadMovieData()
     })
-    document.querySelector("#searchForm").addEventListener("click", (event)  => {
-        loadMovieData(document.querySelector('#title').value)
-    })
+    
     document.querySelector("#clearForm").addEventListener("click", (event)  => {
         document.querySelector('#title').value = ""
+        loadMovieData()
     })
     
 });
